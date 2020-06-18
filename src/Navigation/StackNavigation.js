@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import StartPage from '../Components/StartPage';
 import Authenticate from '../Components/Authenticate';
 import Signin from '../Components/Signin&Signup/Signin';
+import Signup from '../Components/Signin&Signup/Signup';
 
 
 
@@ -28,6 +29,10 @@ function StackNavigation(){
           <Stack.Screen
          name="Signin"
          component={Signin}
+          />
+          <Stack.Screen
+         name="Signup"
+         component={Signup}
           />
       </Stack.Navigator>
     </NavigationContainer>

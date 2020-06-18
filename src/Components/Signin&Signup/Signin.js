@@ -40,7 +40,7 @@ class Signin extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.mainText}>
-          <Text style={styles.headerText}>Login</Text>
+          <Text style={styles.headerText}>Signin</Text>
         </View>
         <View style={styles.formContainer}>
           <View style={styles.inputWrapper}>

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image} from 'react-native';
 import {Button} from 'react-native-paper';
-import GS from '../Photos/GS-Logo.jpg'
+import GS from '../Photos/GS.png'
 
 class Authenticate extends Component {
   constructor(props) {
@@ -11,12 +11,14 @@ class Authenticate extends Component {
   render() {
     return (
       <View style={styles.container}>
+            <View style={styles.imgContainer}>
             <Image source={GS} style={styles.logo}/>
+            </View>
             <View style={styles.buttonActions}>
             <View style={styles.buttonView}>
               <Button
                 mode="outlined"
-                onPress={() => this.props.navigation.push('Signin')}
+                onPress={() => this.props.navigation.navigate('Signin')}
                 style={styles.button}
                 color="white"
                 >
@@ -26,7 +28,7 @@ class Authenticate extends Component {
             <View style={styles.buttonView}>
               <Button
                 mode="outlined"
-                onPress={() => console.log('Pressed')}
+                onPress={() => this.props.navigation.navigate('Signup')}
                 style={styles.button}
                 color="white"
 
@@ -52,11 +54,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  imgContainer:{
+      width:'100%',
+      height:140,
+  },
   logo:{
       width:'100%',
-      height:180,
+      height:'100%',
+
   },
   buttonActions: {
+    marginTop:20,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
