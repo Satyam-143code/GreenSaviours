@@ -12,6 +12,9 @@ import { Button } from "react-native-paper";
 import username from '../../Photos/username.png';
 import eyeImg from '../../Photos/eye_black.png';
 import password from '../../Photos/password.png';
+import G from '../../Photos/G.png';
+import f from '../../Photos/f.png';
+import twitter from '../../Photos/twitter.png';
 
 class Signin extends Component {
   constructor(props) {
@@ -36,6 +39,12 @@ class Signin extends Component {
           });
     }
   };
+
+  pushSignup=()=>{
+    this.props.navigation.navigate('Signup');
+  }
+
+
   render() {
     return (
       <View style={styles.container}>
@@ -48,7 +57,6 @@ class Signin extends Component {
             <TextInput
               style={styles.input}
               placeholder="Username"
-              placholderStyle={styles.placeholder}
               autoCorrect={false}
               autoCapitalize={'none'}
               returnKeyType={'done'}
@@ -61,7 +69,6 @@ class Signin extends Component {
             <TextInput
               style={styles.input}
               placeholder="Password"
-              placholderStyle={styles.placeholder}
               secureTextEntry={this.state.ShowPass}
               autoCorrect={false}
               autoCapitalize={'none'}
@@ -86,9 +93,24 @@ class Signin extends Component {
             </Button>
           </View>
           <View style={styles.subcontainer}>
-            <Text style={styles.text}>Create Account</Text>
-            <Text style={styles.text}>Forgot Password?</Text>
+            <Text style={styles.text1} onPress={this.pushSignup}>Create Account</Text>
+            <Text style={styles.text2}>Forgot Password?</Text>
           </View>
+          <View style={styles.horiLine}></View>
+          <View style={styles.subcontainer}>
+            <Text style={styles.text}>You can also login</Text>
+          </View>
+          <View style={styles.socialAction}>
+          <TouchableOpacity style={styles.containIcon}>
+            <Image source={G} style={styles.Icong} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.containIcon}>
+            <Image source={f} style={styles.Iconf} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.containIcon}>
+            <Image source={twitter} style={styles.Icont} />
+          </TouchableOpacity>
+        </View>
         </View>
       </View>
     );
@@ -149,7 +171,17 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#000',
+    top:30,
+    fontWeight:'bold'
+  },
+  text2: {
+    color: '#57bcff',
     backgroundColor: 'transparent',
+    textDecorationLine:'underline'
+  },
+  text1: {
+    color: 'blue',
+    fontWeight:'bold'
   },
   button:{
     width: DEVICE_WIDTH - 40,
@@ -158,5 +190,30 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     color:'blue',
     backgroundColor:'#000'
+  },
+  socialAction: {
+    top: 80,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems:"center"
+  },
+  containIcon: {
+    margin: 40,
+  },
+  Icong:{
+    width:30,
+    height:30
+  },Iconf:{
+    width:30,
+    height:45
+  },Icont:{
+    width:30,
+    height:30
+  },
+  horiLine:{
+    top:130,
+    backgroundColor:'#000',
+    borderWidth:0.5,
+    marginHorizontal:30
   }
 });
