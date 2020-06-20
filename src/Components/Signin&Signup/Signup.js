@@ -19,6 +19,7 @@ class Signup extends Component {
       repass: true,
       newPress: false,
       rePress: false,
+      isMount:false
     };
   }
 
@@ -53,6 +54,12 @@ class Signup extends Component {
   pushSignin = () => {
     this.props.navigation.navigate('Signin');
   };
+
+  componentDidMount=()=>{
+    this.setState({    
+      isMount:true
+    })
+  }
 
   render() {
     return (

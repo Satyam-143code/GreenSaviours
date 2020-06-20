@@ -131,10 +131,10 @@ const styles = StyleSheet.create({
   para: {
     margin: 10,
     padding: 10,
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: '400',
-    fontFamily: 'Playball-Regular',
-    textAlign:'center'
+    fontFamily: 'NotoSerif-Regular',
+    textAlign: 'center',
   },
   subTitle: {
     marginLeft: 150,
