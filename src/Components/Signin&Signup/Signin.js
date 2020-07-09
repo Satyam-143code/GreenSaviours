@@ -7,7 +7,10 @@ import {
   Text,
   TouchableOpacity,
   Dimensions,
+
 } from 'react-native';
+import axios from 'axios';
+import AsyncStorage from '@react-native-community/async-storage';
 import {Button} from 'react-native-paper';
 import username from '../../Photos/username.png';
 import eyeImg from '../../Photos/eye_black.png';
@@ -42,6 +45,25 @@ class Signin extends Component {
 
   pushSignup = () => {
     this.props.navigation.navigate('Signup');
+  };
+
+  onSubmit = () => {
+    const {email, password} = this.state;
+    const Login = {
+      email: email,
+      password: password,
+    };
+    axios
+      .post('http://10.0.2.2:5000/users/login', Login)
+      .then(async response => {
+        await AsyncStorage.setItem('usertoken', JSON.stringify(response.data));
+        this.props.navigation.navigate('Container');
+        return response.data;
+
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   render() {
@@ -85,7 +107,7 @@ class Signin extends Component {
           <View style={styles.inputWrapper}>
             <Button
               mode="outlined"
-              onPress={() => console.log('Pressed')}
+              onPress={this.onSubmit}
               style={styles.button}
               color="white">
               Signin

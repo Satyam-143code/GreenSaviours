@@ -12,6 +12,8 @@ import {
 import {connect} from 'react-redux';
 import {Button} from 'react-native-paper';
 import eyeImg from '../../Photos/eye_black.png';
+import axios from 'axios';
+
 
 class Signup extends Component {
   constructor(props) {
@@ -32,6 +34,13 @@ class Signup extends Component {
       rePasswordLimits: false,
       isMount: false,
     };
+    this.onChangeFullName = this.onChangeFullName.bind(this);
+    this.onChangeEmail = this.onChangeEmail.bind(this);
+    this.onChangeUsername = this.onChangeUsername.bind(this);
+    this.onChangeNewPassword = this.onChangeNewPassword.bind(this);
+    this.onChangeRePassword = this.onChangeRePassword.bind(this);
+    this.newPass = this.newPass.bind(this);
+    this.rePass = this.rePass.bind(this);
   }
 
   onChangeFullName = text => {
@@ -76,14 +85,14 @@ class Signup extends Component {
   };
 
   onChangeRePassword = text => {
-    if(text!=this.state.newPassword){
+    if (text != this.state.newPassword) {
       this.setState({rePasswordLimits: true});
-    }else{
-    this.setState({
-      rePassword: text,
-    });
-    this.setState({rePasswordLimits: false});
-  }
+    } else {
+      this.setState({
+        rePassword: text,
+      });
+      this.setState({rePasswordLimits: false});
+    }
   };
 
   newPass = () => {
@@ -122,7 +131,27 @@ class Signup extends Component {
     this.setState({
       isMount: true,
     });
+   
   };
+
+  onSubmit =async () => {
+    const newUser = {
+      fullName: this.state.fullName,
+      email: this.state.email,
+      username: this.state.username,
+      password: this.state.rePassword,
+    };
+    axios
+      .post('http://10.0.2.2:5000/users/add',newUser)
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+
 
   render() {
     return (
@@ -190,7 +219,7 @@ class Signup extends Component {
               onChangeText={this.onChangeNewPassword}
             />
             {this.state.newPasswordLimits === true ? (
-              <Text style={styles.alertText}>Password should  be bla bla!!</Text>
+              <Text style={styles.alertText}>Password should be bla bla!!</Text>
             ) : null}
             <TouchableOpacity
               activeOpacity={0.7}
@@ -213,7 +242,9 @@ class Signup extends Component {
               onChangeText={this.onChangeRePassword}
             />
             {this.state.rePasswordLimits === true ? (
-              <Text style={styles.alertText}>Not matching to the password!!</Text>
+              <Text style={styles.alertText}>
+                Not matching to the password!!
+              </Text>
             ) : null}
             <TouchableOpacity
               activeOpacity={0.7}
@@ -226,7 +257,7 @@ class Signup extends Component {
         <View style={styles.inputWrapper}>
           <Button
             mode="outlined"
-            onPress={() => console.log('Pressed')}
+            onPress={this.onSubmit}
             style={styles.button}
             color="white">
             Signup
@@ -271,8 +302,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     paddingLeft: 15,
     color: 'red',
-    fontSize:10,
-    fontWeight:'100'
+    fontSize: 10,
+    fontWeight: '100',
   },
   inputWrapper: {
     marginTop: 25,

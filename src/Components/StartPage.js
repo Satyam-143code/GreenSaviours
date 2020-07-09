@@ -7,7 +7,15 @@ function StartPage({navigation}) {
   return (
     <Onboarding
       skipToPage={3}
-      onDone={() => navigation.navigate('Authenticate')}
+      onDone={() => navigation.reset({
+        index: 0,
+        routes: [
+          {
+            name: 'Authenticate',
+          },
+        ],
+      })
+    }
       pages={[
         {
           backgroundColor: '#fff',

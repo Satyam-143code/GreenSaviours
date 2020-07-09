@@ -5,6 +5,7 @@ import StartPage from '../Components/StartPage';
 import Authenticate from '../Components/Authenticate';
 import Signin from '../Components/Signin&Signup/Signin';
 import Signup from '../Components/Signin&Signup/Signup';
+import Container from '../Components/Container/Container';
 
 const Stack = createStackNavigator();
 
@@ -22,6 +23,7 @@ function StackNavigation() {
         <Stack.Screen name="Authenticate" component={Authenticate} />
         <Stack.Screen name="Signin" component={Signin} />
         <Stack.Screen name="Signup" component={Signup} />
+        <Stack.Screen name="Container" component={Container} />
       </Stack.Navigator>
     </NavigationContainer>
   );
